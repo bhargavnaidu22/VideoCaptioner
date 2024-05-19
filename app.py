@@ -65,7 +65,7 @@ def index():
             caption = generate_caption(video_path)
             processed_video_path = add_caption_and_tts(video_path, caption)
             processed_video_filename = os.path.basename(processed_video_path)
-            return render_template('display_video.html', video_file=processed_video_filename)
+            return render_template('display_video.html', video_file=processed_video_filename, caption=caption)
     return render_template('index.html')
 
 if __name__ == '__main__':

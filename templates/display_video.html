@@ -4,14 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Processed Video</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .video-container {
+            flex: 1;
+        }
+        .caption-container {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .typing {
+            border-right: .15em solid #000;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: black }
+        }
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Processed Video with Captions</h1>
-    <video width="640" height="480" controls>
-        <source src="{{ url_for('static', filename='processed/' + video_file) }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <br>
+    <div class="container">
+        <div class="video-container">
+            <video width="640" height="480" controls>
+                <source src="{{ url_for('static', filename='processed/' + video_file) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="caption-container">
+            <h2>Caption:</h2>
+            <p class="typing">{{ caption }}</p>
+        </div>
+    </div>
     <a href="{{ url_for('index') }}">Upload another video</a>
 </body>
 </html>
